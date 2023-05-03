@@ -1,2 +1,2 @@
 # Etch-a-sketch
-Browser etch-a-sketch application
+This is a web application that is designed to mimic an etch-a-sketch. 
