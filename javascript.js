@@ -35,6 +35,11 @@ for(let i=1; i<=256; i++)
     square.addEventListener('mouseover', () => {
 
         square.style.backgroundColor = 'grey';
+
+    })
+
+    square.addEventListener('mouseout', () => {
+        square.style.backgroundColor = 'white';
     })
 }   
 
