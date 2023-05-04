@@ -31,7 +31,13 @@ for(let i=1; i<=256; i++)
     square.style.flex = '0 0 6.25%';
 
     document.body.appendChild(square);
+
+    square.addEventListener('mouseover', () => {
+
+        square.style.backgroundColor = 'grey';
+    })
 }   
+
 
 // output viewport width and height
 // console.log(document.body.offsetWidth);
