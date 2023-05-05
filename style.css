@@ -17,6 +17,7 @@ button {
     width: 300px;
     background-color: lightsalmon;
     border-color: black;
+    border-width: 3px;
     border-radius: 7px;
 
     font-size: larger;
