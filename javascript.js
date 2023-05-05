@@ -35,58 +35,57 @@ btn.style.borderColor = 'black';
 
 // btn.addEventListener('click', prompt());
 
-
-
-document.body.appendChild(header);
-header.appendChild(btn);
-document.body.appendChild(container);
-
-//style body border
-container.setAttribute('id', 'containter');
-container.style.boxSizing = 'border-box';
-container.style.border = '4px solid black';
-container.style.borderRadius = '14px';
-container.style.height = '500px';
-container.style.width = '500px';
-container.style.alignItems = 'center';
-// document.body.style.margin = '0';
-// document.body.style.padding = '0';
-
-//flexbox container
-container.style.display = 'flex';
-container.style.alignContent = 'flex-start';
-container.style.flexWrap = 'wrap';
-
-//create 16x16 grid
-for(let i=1; i<=256; i++)
+function createGrid (x)
+{
+    for(let i=1; i<=x*x; i++)
 {
     const square = document.createElement('div');
     square.setAttribute('id', i);
 
+    let gridSpace = ((500/x)/500)*100;
+    console.log(gridSpace);
+    
+
     //box styling
     square.style.boxSizing = 'border-box';
     square.style.border = 'thin solid black';
-    square.style.height = '6.25%';
-    square.style.width = '6.25%';
+    square.style.height = gridSpace + '%';
+    square.style.width = gridSpace + '%';
 
     //no flex growing/shrinking; basis = 100/16
-    square.style.flex = '1 1 6.25%';
+    square.style.flex = '1 1 auto';
 
     //add to container
     container.appendChild(square);
 
     //change color with hover
     square.addEventListener('mouseover', () => {
-
         square.style.backgroundColor = 'grey';
-
     })
-
-    //revert color after hover
-    // square.addEventListener('mouseout', () => {
-    //     square.style.backgroundColor = 'white';
-    // })
 }   
+}
+
+createGrid(50);
+
+document.body.appendChild(header);
+document.body.appendChild(container);
+header.appendChild(btn);
+
+
+//style body border
+container.setAttribute('id', 'containter');
+container.style.boxSizing = 'border-box';
+container.style.border = '4px solid black';
+container.style.borderRadius = '10px';
+container.style.height = '500px';
+container.style.width = '500px';
+container.style.alignItems = 'center';
+
+
+//flexbox container
+container.style.display = 'flex';
+container.style.alignContent = 'flex-start';
+container.style.flexWrap = 'wrap';
 
 document.body.appendChild(footer);
 
