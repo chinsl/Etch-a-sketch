@@ -1,19 +1,61 @@
+const container = document.createElement('div');
 //div will contain the 16-square grid
+const header = document.createElement('header');
+const footer = document.createElement('footer');
+const btn = document.createElement('button');
 
+
+
+//style header
+header.style.display = 'flex';
+header.style.height = '100px';
+header.style.width = '100%';
+header.style.justifyContent = 'center';
+
+document.body.style.display = 'flex';
+document.body.style.flexDirection = 'column'
+document.body.style.alignItems   = 'center';
+document.body.style.backgroundColor = '#ffe4c4'
+
+
+//style button
+btn.style.height = '30px';
+btn.style.width = '300px';
+btn.textContent = "Change Grid Resolution"
+btn.style.fontFamily = 'courier';
+btn.style.fontSize = 'larger';
+btn.style.display = 'flex';
+btn.style.fontWeight = 'bold';
+btn.style.justifyContent = 'center';
+btn.style.alignSelf = 'center';
+btn.style.alignItems = 'center';
+btn.style.backgroundColor = '#deb887'
+btn.style.borderRadius = '7px';
+btn.style.borderColor = 'black';
+
+// btn.addEventListener('click', prompt());
+
+
+
+document.body.appendChild(header);
+header.appendChild(btn);
+document.body.appendChild(container);
 
 //style body border
-document.body.setAttribute('id', 'containter');
-document.body.style.boxSizing = 'border-box';
-document.body.style.border = '4px solid black';
-// document.body.style.height = '100vh';
-// document.body.style.width = '100vw';
+container.setAttribute('id', 'containter');
+container.style.boxSizing = 'border-box';
+container.style.border = '4px solid black';
+container.style.borderRadius = '14px';
+container.style.height = '500px';
+container.style.width = '500px';
+container.style.alignItems = 'center';
 // document.body.style.margin = '0';
 // document.body.style.padding = '0';
 
 //flexbox container
-document.body.style.display = 'flex';
-document.body.style.alignContent = 'flex-start';
-document.body.style.flexWrap = 'wrap';
+container.style.display = 'flex';
+container.style.alignContent = 'flex-start';
+container.style.flexWrap = 'wrap';
 
 //create 16x16 grid
 for(let i=1; i<=256; i++)
@@ -24,24 +66,46 @@ for(let i=1; i<=256; i++)
     //box styling
     square.style.boxSizing = 'border-box';
     square.style.border = 'thin solid black';
-    square.style.height = '6vh';
-    square.style.width = '6vw';
+    square.style.height = '6.25%';
+    square.style.width = '6.25%';
 
     //no flex growing/shrinking; basis = 100/16
-    square.style.flex = '0 0 6.25%';
+    square.style.flex = '1 1 6.25%';
 
-    document.body.appendChild(square);
+    //add to container
+    container.appendChild(square);
 
+    //change color with hover
     square.addEventListener('mouseover', () => {
 
         square.style.backgroundColor = 'grey';
 
     })
 
-    square.addEventListener('mouseout', () => {
-        square.style.backgroundColor = 'white';
-    })
+    //revert color after hover
+    // square.addEventListener('mouseout', () => {
+    //     square.style.backgroundColor = 'white';
+    // })
 }   
+
+document.body.appendChild(footer);
+
+const div = document.createElement('div');
+
+footer.appendChild(div);
+
+
+
+div.textContent = 'ETCH-A-SKETCH';
+div.style.fontFamily = 'courier';
+div.style.fontWeight = 'bold';
+div.style.fontSize = '50px';
+div.style.textAlign = 'center';
+footer.style.display = 'flex';
+footer.style.justifyContent = 'center';
+footer.style.alignContent = 'center';
+footer.style.width = '100%';
+footer.style.marginTop = '10px';
 
 
 // output viewport width and height
