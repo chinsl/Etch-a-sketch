@@ -1,69 +1,127 @@
-//create div with class="container"
-const container = document.createElement('div');
-container.classList.toggle("container");
 
-//create footer with text
-const footer = document.createElement('footer');
-footer.textContent = "ETCH-A-SKETCH";
+let gridSize = 16;
 
-//add footer and container
-document.body.appendChild(footer);
-document.body.insertBefore(container, footer);
+
+const grid = document.getElementById('grid');
+
+//buttons
+const monochrome = document.getElementById('monochrome');
+const color = document.getElementById('color');
+const clear = document.getElementById('clear');
+const size = document.getElementById('size');
+
+let isClear, isMonochrome, isColor;
+
+isMonochrome=true;
+
+monochrome.addEventListener('click', () => {
+    isColor=false;
+    isMonochrome=true;
+})
+
+color.addEventListener('click', () => {
+    isMonochrome = false;
+    isColor=true;
+    console.log(true)
+})
+
+clear.addEventListener('click', () => {
+    deleteGrid();
+    createGrid(gridSize);
+
+    console.log(getRandomColor());
+});
+
+
+//pass reference to ask function upon click
+size.addEventListener('click', askForSize);
 
 //function to make grid
 function createGrid (x)
 {
-
+    //this loop iterates to create, size, and append each cell
     for(let i=1; i<=x*x; i++)
     {
-        //create squares
-        const square = document.createElement('div');
-        square.setAttribute('id', i);
+        //create partitions
+        const cell = document.createElement('div');
+        cell.setAttribute('id', i);
 
         //initialize percentage of container side that each square occupies
-        let gridSpace = ((500/x)/500)*100;
+        let gridSpace = ((450/x)/450)*100;
         // console.log(gridSpace);
         
         //box styling
-        square.style.boxSizing = 'border-box';
-        square.style.border = 'thin solid black';
-        square.style.height = gridSpace + '%';
-        square.style.width = gridSpace + '%';
+        cell.style.boxSizing = 'border-box';
+        cell.style.border = 'thin solid black';
+        cell.style.height = gridSpace + '%';
+        cell.style.width = gridSpace + '%';
 
-        //no flex growing/shrinking; basis = 100/16
-        square.style.flex = '1 1 auto';
+        //flex = auto
+        cell.style.flex = '1 1 auto';
 
-        //add to container
-        container.appendChild(square);
+        //add cell to container
+        grid.appendChild(cell);
+
 
         //change color with hover
-        square.addEventListener('mouseover', () => 
+        cell.addEventListener('mouseover', () => 
         {
-            square.style.backgroundColor = 'lightsalmon';
+            let c = getRandomColor();
+
+            if(isMonochrome)
+                cell.style.backgroundColor = 'lightsalmon';
+            else if(isColor)
+            {
+                cell.style.backgroundColor = c;
+                console.log(c);
+            }
+
         })
     }   
 }
 
-//initial grid
-createGrid(16);
-
-//default square grid value
-let size = 16;
-
-function ask ()
+function getRandomColor ()
 {
-    //delete contents of grid container
-    while(container.firstChild)
+    let r = Math.floor(Math.random()*1000);
+    while(r >= 255)
     {
-        container.removeChild(container.firstChild);
+        r = Math.floor(Math.random()*1000);
     }
-    
-    size = prompt('What square size?');
-    createGrid(size);
+
+    let g = Math.floor(Math.random()*1000)
+    while(g >= 255)
+    {
+        g = Math.floor(Math.random()*1000);
+    }
+
+    let b = Math.floor(Math.random()*1000)
+    while(b >= 255)
+    {
+        b = Math.floor(Math.random()*1000);
+    }
+
+    return "rgb(" + r + " "+ g + " " + b + ")";
 }
 
-//create node for size button
-const btn = document.getElementById('size');
 
-//pass reference to ask function
-btn.addEventListener('click', ask);
+//initial grid call
+createGrid(gridSize);
+
+function deleteGrid()
+{
+    while(grid.firstChild)
+    {
+        grid.removeChild(grid.firstChild);
+    }
+}
+
+function askForSize ()
+{
+    //delete contents of grid container
+    deleteGrid();
+    gridSize = prompt('What square size?');
+    createGrid(gridSize);
+}
+
+
+
