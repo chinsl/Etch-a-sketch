@@ -13,11 +13,9 @@ document.body.insertBefore(container, footer);
 //function to make grid
 function createGrid (x)
 {
-    
 
     for(let i=1; i<=x*x; i++)
     {
-
         //create squares
         const square = document.createElement('div');
         square.setAttribute('id', i);
@@ -26,7 +24,6 @@ function createGrid (x)
         let gridSpace = ((500/x)/500)*100;
         // console.log(gridSpace);
         
-
         //box styling
         square.style.boxSizing = 'border-box';
         square.style.border = 'thin solid black';
