@@ -110,6 +110,7 @@ function getRandomColor ()
 
 function deleteGrid()
 {
+    //iterates to remove cells
     while(grid.firstChild)
     {
         grid.removeChild(grid.firstChild);
