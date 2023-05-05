@@ -1,9 +1,3 @@
-
-let gridSize = 16;
-
-//initial grid call
-createGrid(gridSize);
-
 //grid container
 const grid = document.getElementById('grid');
 
@@ -54,7 +48,7 @@ function createGrid (x)
         
         //box styling
         cell.style.boxSizing = 'border-box';
-        cell.style.border = 'thin solid black';
+        // cell.style.border = 'thin solid black';
         cell.style.height = gridSpace + '%';
         cell.style.width = gridSpace + '%';
 
@@ -125,5 +119,8 @@ function askForSize ()
     createGrid(gridSize);
 }
 
+let gridSize = 16;
 
+//initial grid call
+createGrid(gridSize);
 
