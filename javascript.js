@@ -1,7 +1,10 @@
 
 let gridSize = 16;
 
+//initial grid call
+createGrid(gridSize);
 
+//grid container
 const grid = document.getElementById('grid');
 
 //buttons
@@ -10,21 +13,20 @@ const color = document.getElementById('color');
 const clear = document.getElementById('clear');
 const size = document.getElementById('size');
 
+//mode status
 let isClear, isMonochrome, isColor;
-
 isMonochrome=true;
 
+//mode changes
 monochrome.addEventListener('click', () => {
     isColor=false;
     isMonochrome=true;
 })
-
 color.addEventListener('click', () => {
     isMonochrome = false;
     isColor=true;
     console.log(true)
 })
-
 clear.addEventListener('click', () => {
     deleteGrid();
     createGrid(gridSize);
@@ -82,6 +84,9 @@ function createGrid (x)
 
 function getRandomColor ()
 {
+    //generates random number between 0 and 255
+    //and returns rgb value
+
     let r = Math.floor(Math.random()*1000);
     while(r >= 255)
     {
@@ -102,10 +107,6 @@ function getRandomColor ()
 
     return "rgb(" + r + " "+ g + " " + b + ")";
 }
-
-
-//initial grid call
-createGrid(gridSize);
 
 function deleteGrid()
 {
