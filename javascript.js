@@ -19,14 +19,14 @@ monochrome.addEventListener('click', () => {
 color.addEventListener('click', () => {
     isMonochrome = false;
     isColor=true;
-    console.log(true)
+    // console.log('isColor='+isColor);
+    // console.log('isMonochrome='+isMonochrome);
 })
 clear.addEventListener('click', () => {
     deleteGrid();
     createGrid(gridSize);
-
-    console.log(getRandomColor());
 });
+
 
 
 //pass reference to ask function upon click
@@ -48,7 +48,7 @@ function createGrid (x)
         
         //box styling
         cell.style.boxSizing = 'border-box';
-        // cell.style.border = 'thin solid black';
+        cell.style.border = 'thin solid black';
         cell.style.height = gridSpace + '%';
         cell.style.width = gridSpace + '%';
 
@@ -58,49 +58,89 @@ function createGrid (x)
         //add cell to container
         grid.appendChild(cell);
 
+        let counter = 0;
 
+        let r, g, b;
+
+        r=255;
+        g=160;
+        b=122;
+        
         //change color with hover
         cell.addEventListener('mouseover', () => 
         {
-            let c = getRandomColor();
+            counter++;
+            console.log(counter);
 
-            if(isMonochrome)
-                cell.style.backgroundColor = 'lightsalmon';
-            else if(isColor)
+            if(counter>1)
             {
-                cell.style.backgroundColor = c;
-                console.log(c);
-            }
+                r = r-25.5;
+                g = g-25.5;
+                b = b-25.5;
 
+                if(r<0)
+                    r=0
+                
+                if(g<0)
+                    g=0;
+                
+                if(b<0)
+                    b=0;
+
+                cell.style.backgroundColor = getColorString(r,g,b);
+                // console.log(r+" "+g+" "+b);
+            }
+            else if(counter==1)
+            {
+                if(isColor)
+                {
+                    r = getR();
+                    g = getG();
+                    b = getB();
+                    console.log("this"+r+" "+g+" "+b);
+                }
+                cell.style.backgroundColor = getColorString(r,g,b); 
+                // console.log(r+" "+g+" "+b);
+            }
         })
     }   
 }
 
-function getRandomColor ()
+function getColorString (r, g, b)
 {
-    //generates random number between 0 and 255
-    //and returns rgb value
-
+    //returns rgb string
+    return "rgb(" + r + " "+ g + " " + b + ")";
+}
+function getR (){
     let r = Math.floor(Math.random()*1000);
     while(r >= 255)
     {
         r = Math.floor(Math.random()*1000);
     }
 
+    return r;
+}
+
+function getG (){
     let g = Math.floor(Math.random()*1000)
     while(g >= 255)
     {
         g = Math.floor(Math.random()*1000);
     }
 
+    return g;
+}
+
+function getB (){
     let b = Math.floor(Math.random()*1000)
     while(b >= 255)
     {
         b = Math.floor(Math.random()*1000);
     }
 
-    return "rgb(" + r + " "+ g + " " + b + ")";
+    return b;
 }
+
 
 function deleteGrid()
 {
