@@ -16,18 +16,18 @@ monochrome.addEventListener('click', () => {
     isColor=false;
     isMonochrome=true;
 })
+
 color.addEventListener('click', () => {
     isMonochrome = false;
     isColor=true;
     // console.log('isColor='+isColor);
     // console.log('isMonochrome='+isMonochrome);
 })
+
 clear.addEventListener('click', () => {
     deleteGrid();
     createGrid(gridSize);
 });
-
-
 
 //pass reference to ask function upon click
 size.addEventListener('click', askForSize);
@@ -62,9 +62,9 @@ function createGrid (x)
 
         let r, g, b;
 
-        r=255;
-        g=160;
-        b=122;
+        r=240;
+        g=128;
+        b=128;
         
         //change color with hover
         cell.addEventListener('mouseover', () => 
@@ -140,7 +140,6 @@ function getB (){
 
     return b;
 }
-
 
 function deleteGrid()
 {
